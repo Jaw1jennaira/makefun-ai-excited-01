@@ -61,10 +61,14 @@ function main(): void {
   copyFileSync(SOURCE_PATH, TARGET_PATH);
 
   // Verify the copy, not the intent: read back what actually landed on
-  // disk and compare size and hash against the source bytes.
+  // disk and compare size and hash against the source bytes, and confirm
+  // the written file is itself a complete JPEG (a hash match alone would
+  // also pass if the source were somehow already damaged, so the marker
+  // check runs on the output too).
   const writtenBytes = readFileSync(TARGET_PATH);
   const writtenHash = sha256(writtenBytes);
   const writtenSize = statSync(TARGET_PATH).size;
+  assertJpegComplete(writtenBytes);
 
   if (writtenSize !== sourceBytes.length) {
     throw new Error(
