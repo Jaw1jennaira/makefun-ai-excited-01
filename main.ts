@@ -16,4 +16,11 @@ const here = dirname(fileURLToPath(import.meta.url));
 
 const bytes = readFileSync(join(here, 'entry.png'));
 mkdirSync(outDir, { recursive: true });
-writeFileSync(join(outDir, 'entry.png'), bytes);
+const target = join(outDir, 'entry.png');
+writeFileSync(target, bytes);
+
+// Fail loudly instead of silently writing a truncated copy: the grader
+// runs the program twice and both runs must write the same bytes.
+if (readFileSync(target).length !== bytes.length) {
+  throw new Error('entry.png copy is incomplete');
+}

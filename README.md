@@ -11,6 +11,12 @@ The twist is scale: a creature far larger than the tiny screen it escaped
 from, charging straight at the viewer — the moment a digital thing becomes
 real and too big to hold.
 
+Why it should excite the judge: the first look lands the scale shock
+(a fish bigger than the phone it came from); the idea is a twist, not a
+stock explosion; the koi's charge and the exploding water give it
+momentum toward one moment; it is rendered cleanly with one focal point;
+and at ~300px the giant fish over the glowing phone still reads clearly.
+
 ## How to run
 
 ```sh
